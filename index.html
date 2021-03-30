@@ -7,22 +7,127 @@
         <link rel="stylesheet" href="main.css"/>
         <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <style type="text/css">
+            /* Custom style rules go here. We've included a few, but feel free to write your own! */
+            svg {
+                display: block;
+                margin: auto auto;
+                text-align: center;
+            }
+            .tooltip {
+                position: absolute;
+                font-size: 12px;
+                min-width: 100px;
+                padding: 10px;
+                width:  auto;
+                height: auto;
+                background-color: white;
+            }
+            p {
+                margin: 10px 100px;
+            }
+            p.bullets {
+                margin-left: 150px;
+            }
+        </style>
+
     </head>
 <body>
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
-    <div class="row">
-        <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
-        </div>
-        <div class="col-lg-6">
-            <div id="graph3"></div>
-        </div>
+    <div class="vertical-center">
+        <div  id="graph1"></div>
+        </br>
+        </br>
+        <div  id="graph2"></div>
+        </br>
+        </br>
+        <div id="graph3"></div>
+        </br>
+        <div>
+                <label for="genres">Choose a Genre:</label>
+                <select id="genres" name="genres" >
+                    <option value="Sports" onclick="publisher('Sports')">Sports</option>
+                    <option value="Platform" onclick="publisher('Platform')">Platform</option>
+                    <option value="Racing" onclick="publisher('Racing')">Racing</option>
+                    <option value="Role-Playing" onclick="publisher('Role-Playing')">Role-Playing</option>
+                    <option value="Puzzle" onclick="publisher('Puzzle')">Puzzle</option>
+                    <option value="Misc" onclick="publisher('Misc')">Misc</option>
+                    <option value="Shooter" onclick="publisher('Shooter')">Shooter</option>
+                    <option value="Simulation" onclick="publisher('Simulation')">Simulation</option>
+                    <option value="Action" onclick="publisher('Action')">Action</option>
+                    <option value="Fighting" onclick="publisher('Fighting')">Fighting</option>
+                    <option value="Adventure" onclick="publisher('Adventure')">Adventure</option>
+                    <option value="Strategy" onclick="publisher('Strategy')">Strategy</option>
+                </select> 
+          </div>
+
     </div>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
+</br>
+</br>
+</br>
+    <div>
+        <p>
+            1.  Describe how your dashboard answers the questions presented. You don't have to address every question directly, 
+                but should at a high level address the main questions. (10 points)
+        </p>
+        <p class="bullets">
+            a.   My first graph identifies the top 10 highest selling games of all time. I use a piechart to not only show these ten games and how much they sold, but also compare the number of games sold between them.
+        </p>
+        <p class="bullets">
+            b.   My second graph is a grouped bar chart to compare how many copies each genre of a game sold in each region. This allows for easy comparison among regions and genres.
+        </p>
+        <p class="bullets">
+            c.   My third graph is a bar chart that dynamically plots the top 5 publishers for each genre, using the number of global sales by the publisher for that genre,
+        </p> 
+        <p>
+            2.  List 3 reasons why D3 was helpful and improved your visualization (6 points)
+        </p>
+        <p class="bullets">
+            a.  The use of callbacks within D3 functions makes it easy to clean data for the visualization, preventing the need for preprocessing and uploading different csv files for different visualizations.
+        </p>
+        <p class="bullets">
+            b.  D3 gives a lot of option to customize the chart, from color schemes to the size and placement of the text. This allows you to fit the graph to the data and no the other way around (for example using legends insetad
+                of crowded axes)
+        <p class="bullets">
+            c.  Different D3 charts follow similar workflows, making switching between different charts fairly intuitive. Most charts will start by referencing svg, cleaning data, appending the data, and then appending relevant information.
+        </p>
+        <p>
+            3. List 3 reasons why D3 would not be the best tool for creating a visualization (6 points)
+        </p>
+        <p class="bullets">
+            a.  D3 requires you to customize every aspect of the chart, leading to single visualizations taking a long time to create. Many libraries will automatically place the x and y axes, the title, and label the ticks.
+        </p>
+        <p class="bullets">
+            b.  The customizability of D3 makes each chart largely unreusable as you have to select the specific values for each axis.
+        </p>
+        <p class="bullets">
+            c.  The amount of customizability also makes D3 difficult to use with a team, as every aspect can be manipulated. A large project with many D3 charts could easily become unmaintanable as people change components
+                and cannot trace the root of the issue
+        </p>
+        <p>
+            4.  Evaluate the accessibility of your dashboard based on the readings in the “Before you begin” section. What kinds of users might find this dashboard accessible and who might have more difficulty? What additional 
+                actions might you take to make this dashboard more accessible to all audiences? Your response should refer to at least one of the readings and be about 1 paragraph. 
+        </p>
+        <p class="bullets">
+            My charts could definitely be more accessible. One thing I notice is that my first two charts definitely require the viewer to be able to distinguish between colors to be able to relate the visualization to the legend.
+            As “Why Accessibility Is at the Heart of Data Visualization” mentions, we should consider if people with vision impairments may have trouble reading the visualization. I also think this consideration forces us to make
+            a better visualization instead of relying on color as a crutch. I do believe my charts convey the information they are trying to effectively though, meaning there isn't confusion about what the chart is trying to tell you. 
+            This is mostly done through the use of labels and titles. 
+        </p>
+        <p>
+            5.  Reflect on the stages of your design and implementation process when you could have taken steps to make your dashboard more accessible to all audiences. What are some factors that kept you from taking these steps? (a few sentences) 
+        </p>
+        <p class="bullets">
+            I definitely took an approach of getting the data to show and making it look nice afterwards, which limited my ability to make it accessible as I was not considering it from the start. For example, I believe graph two would have
+            been better represented as a piechart, with each slice a different region. Bold lines added to the pie chart would make it easy to distinguish the slices even if the colors look alike. Right now, the chart is too crowded
+            to included labels for each bar, but the legend requires one to distinguish all the colors to read the chart.
+        </p>
+
+    </div>
 </body>
 </html>
